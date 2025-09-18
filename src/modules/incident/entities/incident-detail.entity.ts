@@ -47,7 +47,7 @@ export class IncidentDetailEntity {
     name: 'technician_user_app_id',
     type: 'int',
   })
-  technicianUserAppId: number;
+  technicianUserAppId?: number;
 
   @ManyToOne(() => IncidentDetailStatusEntity, (e) => e.incidentDetail)
   @JoinColumn({ name: 'incident_detail_status_code' })
