@@ -11,7 +11,7 @@ import {
 } from '@entities';
 import { Repository } from 'typeorm';
 import { BusinessErrors } from '../../errors/business-error';
-import { GetUserAppByEmailAdapter } from '../../../../infrastructure/microservices-adapters/get-user-app-by-email-adapter.service';
+import { GetUserAppByEmailAdapter } from '../../../../infrastructure/microservices-adapters';
 import { IncidentDetailStatusEnum } from '@enums';
 
 @CommandHandler(RegisterIncidentCommand)
@@ -31,7 +31,7 @@ export class RegisterIncidentHandler
     private readonly _incidentDetailStatusRepository: Repository<IncidentDetailStatusEntity>,
     @InjectRepository(IncidentStatusHistoryEntity)
     private readonly _incidentStatusHistoryRepository: Repository<IncidentStatusHistoryEntity>,
-    private readonly _qetUserAppByUserAppIdAdapter: GetUserAppByEmailAdapter,
+    private readonly _getUserAppByUserAppIdAdapter: GetUserAppByEmailAdapter,
   ) {}
 
   async execute(command: RegisterIncidentCommand): Promise<IncidentEntity> {
@@ -68,7 +68,7 @@ export class RegisterIncidentHandler
       throw BusinessErrors.IncidentPriorityLevelIsNotActive;
     }
 
-    const userApp = await this._qetUserAppByUserAppIdAdapter.execute(email);
+    const userApp = await this._getUserAppByUserAppIdAdapter.execute(email);
 
     if (!userApp.isActive) {
       throw BusinessErrors.IncidentUserAppIsNotActive;
@@ -84,18 +84,18 @@ export class RegisterIncidentHandler
     const saveResult = await this._incidentRepository.save(saveEntity);
     const saveDetailsEntity: IncidentDetailEntity[] = [];
 
+    const status = await this._incidentDetailStatusRepository.findOneBy({
+      incidentDetailStatusCode: IncidentDetailStatusEnum.PEN_ASG,
+    });
+
     for (const detail of details) {
       const saveDetailEntity = new IncidentDetailEntity();
       saveDetailEntity.incident = saveResult;
 
-      const status = await this._incidentDetailStatusRepository.findOneBy({
-        incidentDetailStatusCode: IncidentDetailStatusEnum.PEN_ASG,
-      });
       saveDetailEntity.description = detail.description;
       saveDetailEntity.incidentDetailStatus = status!;
       saveDetailEntity.equipmentId = detail.equipmentId;
       saveDetailEntity.equipmentLocationId = detail.equipmentLocationId;
-      saveDetailEntity.technicianUserAppId = detail.technicianUserAppId;
       saveDetailsEntity.push(saveDetailEntity);
     }
 

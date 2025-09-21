@@ -5,13 +5,17 @@ import { DeleteIncidentPriorityLevelHandler } from './delete-incident-priority-l
 import { UpdateIncidentPriorityLevelHandler } from './update-incident-priority-level.handler';
 import { RegisterIncidentPriorityLevelHandler } from './register-incident-priority-level.handler';
 import { RegisterIncidentHandler } from './register-incident.handler';
+import { AssignTechnicalUserHandler } from './assign-technical-user.handler';
+import { UpdateIncidentDetailStatusHandler } from './update-incident-detail-status.handler';
 
 export const CommandHandlers = [
+  AssignTechnicalUserHandler,
   DeleteIncidentPriorityLevelHandler,
   DeleteIncidentTypeHandler,
   RegisterIncidentHandler,
   RegisterIncidentTypeHandler,
   RegisterIncidentPriorityLevelHandler,
+  UpdateIncidentDetailStatusHandler,
   UpdateIncidentPriorityLevelHandler,
   UpdateIncidentTypeHandler,
 ];

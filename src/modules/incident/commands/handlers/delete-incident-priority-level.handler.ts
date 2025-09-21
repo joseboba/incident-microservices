@@ -27,7 +27,7 @@ export class DeleteIncidentPriorityLevelHandler
 
     const incidentPriorityLevel =
       await this._incidentPriorityLevelRepository.findOneBy({
-        incidentPriorityLevelCode
+        incidentPriorityLevelCode,
       });
 
     if (!incidentPriorityLevel) {

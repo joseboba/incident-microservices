@@ -1,9 +1,8 @@
 import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
-import { BaseEntity } from 'incident-management-commons';
 import { IncidentDetailEntity, IncidentStatusHistoryEntity } from '@entities';
 
 @Entity({ name: 'incident_detail_status' })
-export class IncidentDetailStatusEntity extends BaseEntity {
+export class IncidentDetailStatusEntity {
   @PrimaryColumn({
     name: 'incident_detail_status_code',
     type: 'varchar',

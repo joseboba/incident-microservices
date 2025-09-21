@@ -39,7 +39,6 @@ export class IncidentDto {
         description: 'test',
         equipmentId: 123,
         equipmentLocationId: 45,
-        technicianUserAppId: null,
       },
     ],
   })

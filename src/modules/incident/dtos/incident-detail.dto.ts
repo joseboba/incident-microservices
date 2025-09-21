@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 
@@ -19,9 +19,4 @@ export class IncidentDetailDto {
   @IsNotEmpty()
   @ApiProperty()
   equipmentLocationId: number;
-
-  @IsOptional()
-  @IsNumber()
-  @ApiProperty({ required: false, nullable: true })
-  technicianUserAppId: number;
 }

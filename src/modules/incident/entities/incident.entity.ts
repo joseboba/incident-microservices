@@ -1,4 +1,11 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
 import { IncidentTypeEntity } from './incident-type.entity';
 import { IncidentPriorityLevelEntity } from './incident-priority-level.entity';
 import { IncidentDetailEntity } from './incident-detail.entity';
@@ -15,7 +22,7 @@ export class IncidentEntity {
   @Column({ name: 'description', type: 'text' })
   description: string;
 
-  @ManyToOne(() =>  IncidentTypeEntity, (e) => e.incidents)
+  @ManyToOne(() => IncidentTypeEntity, (e) => e.incidents)
   @JoinColumn({ name: 'incident_type_code' })
   incidentType: IncidentTypeEntity;
 
