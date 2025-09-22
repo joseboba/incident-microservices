@@ -39,15 +39,15 @@ import {
 } from '../commands/impl';
 import {
   FindIncidentPriorityLevelByCodeQuery,
-  FindIncidentTypeByCodeQuery, GetIncidentByIdQuery,
+  FindIncidentTypeByCodeQuery,
+  GetIncidentByIdQuery,
   GetIncidentDetailStatusListQuery,
   GetIncidentListQuery,
   GetIncidentPriorityLevelListQuery,
   GetIncidentTypeListQuery,
 } from '../queries/impl';
-import { BaseJwtPayload, GetUser, Public } from 'incident-management-commons';
+import { BaseJwtPayload, GetUser } from 'incident-management-commons';
 import { IncidentDetailStatusEnum } from '@enums';
-import { GetIncidentByIdHandler } from '../queries/handlers/get-incident-by-id.handler';
 
 @Controller()
 export class IncidentController {
@@ -55,6 +55,11 @@ export class IncidentController {
     private readonly _command: CommandBus,
     private readonly _query: QueryBus,
   ) {}
+
+  @Get('type-list')
+  async getIncidentTypeList(): Promise<IncidentTypeEntity[]> {
+    return this._query.execute(new GetIncidentTypeListQuery());
+  }
 
   @Get()
   async listIncident(
@@ -84,11 +89,6 @@ export class IncidentController {
     @Param('typeCode') typeCode: string,
   ): Promise<IncidentTypeEntity> {
     return this._query.execute(new FindIncidentTypeByCodeQuery(typeCode));
-  }
-
-  @Get('type-list')
-  async getIncidentTypeList(): Promise<IncidentTypeEntity[]> {
-    return this._query.execute(new GetIncidentTypeListQuery());
   }
 
   @Get('detail-status-list')
