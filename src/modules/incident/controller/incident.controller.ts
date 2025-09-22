@@ -77,13 +77,6 @@ export class IncidentController {
     );
   }
 
-  @Get(':incidentId')
-  async getIncidentById(
-    @Param('incidentId', ParseIntPipe) incidentId: number,
-  ): Promise<IncidentEntity[]> {
-    return this._query.execute(new GetIncidentByIdQuery(incidentId));
-  }
-
   @Get('type/:typeCode')
   async findIncidentTypeByCode(
     @Param('typeCode') typeCode: string,
@@ -108,6 +101,13 @@ export class IncidentController {
   @Get('priority-level-list')
   async getIncidentDetailStatusList(): Promise<IncidentPriorityLevelEntity[]> {
     return this._query.execute(new GetIncidentPriorityLevelListQuery());
+  }
+
+  @Get(':incidentId')
+  async getIncidentById(
+    @Param('incidentId', ParseIntPipe) incidentId: number,
+  ): Promise<IncidentEntity[]> {
+    return this._query.execute(new GetIncidentByIdQuery(incidentId));
   }
 
   @Post()
