@@ -41,6 +41,9 @@ export class GetIncidentListHandler
           technicianUserAppId: user.isTechnical ? userApp.userAppId : undefined,
         },
       },
+      relations: {
+        incidentPriorityLevel: true,
+      }
     });
   }
 
