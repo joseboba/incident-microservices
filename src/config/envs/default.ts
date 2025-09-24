@@ -36,7 +36,7 @@ export const config = {
   },
   user: {
     getUserAppByUserAppId: {
-      baseUrl: 'http://localhost:3001',
+      baseUrl: 'http://localhost:3000',
       resourcePath: 'api/user/:email',
     },
   },
