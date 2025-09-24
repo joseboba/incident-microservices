@@ -43,18 +43,18 @@ export class GetIncidentListHandler
       },
       relations: {
         incidentPriorityLevel: true,
-      }
+      },
     });
   }
 
   private cleanValue(originalDate: Date, isStart: boolean): Date {
     const date = new Date(originalDate);
     if (isStart) {
-      date.setHours(0, 0, 0, 0);
+      date.setUTCHours(0, 0, 0, 0);
       return date;
     }
 
-    date.setHours(23, 59, 59, 999);
+    date.setUTCHours(23, 59, 59, 999);
     return date;
   }
 }
