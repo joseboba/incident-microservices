@@ -40,4 +40,10 @@ export const config = {
       resourcePath: 'api/user/:email',
     },
   },
+  equipmentLocation: {
+    getEquipmentLocationById: {
+      baseUrl: 'http://localhost:3001',
+      resourcePath: 'api/equipment-location/:id',
+    },
+  },
 };

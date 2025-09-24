@@ -108,6 +108,7 @@ export class UpdateIncidentDetailStatusHandler
     if (completedItems !== totalDetails) return;
 
     incident.isCompleted = true;
+    incident.inProgress = false;
     incident.completedDate = new Date();
     await this._incidentRepository.save(incident);
   }

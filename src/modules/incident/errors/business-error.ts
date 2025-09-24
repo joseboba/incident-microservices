@@ -77,9 +77,13 @@ export class BusinessErrors {
     'User is not technician',
   );
 
-
   public static readonly IncidentDetailIsNotInCorrectStatus = new BusinessError(
     'INCIDENT.IncidentDetailIsNotInCorrectStatus',
     'Incident detail is not in correct status',
+  );
+
+  public static EquipmentLocationIsNotActive = new BusinessError(
+    'INCIDENT.EquipmentLocationIsNotActive',
+    'Equipment location is not active',
   );
 }
