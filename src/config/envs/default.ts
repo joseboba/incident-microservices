@@ -43,7 +43,7 @@ export const config = {
   equipmentLocation: {
     getEquipmentLocationById: {
       baseUrl: 'http://localhost:3001',
-      resourcePath: 'api/equipment-location/:id',
+      resourcePath: 'api/equipment/equipment-location/:id',
     },
   },
 };
