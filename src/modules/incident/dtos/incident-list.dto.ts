@@ -1,5 +1,9 @@
 import { Type } from 'class-transformer';
-import { IsBoolean, IsDate, IsOptional } from 'class-validator';
+import {
+  IsBooleanString,
+  IsDate,
+  IsOptional,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class GetIncidentListQueryDto {
@@ -14,14 +18,12 @@ export class GetIncidentListQueryDto {
   endDate: Date;
 
   @IsOptional()
-  @Type(() => Boolean)
-  @IsBoolean()
+  @IsBooleanString()
   @ApiProperty({ required: false })
   isCompleted?: boolean;
 
   @IsOptional()
-  @Type(() => Boolean)
-  @IsBoolean()
+  @IsBooleanString()
   @ApiProperty({ required: false })
   isInProgress?: boolean;
 }
