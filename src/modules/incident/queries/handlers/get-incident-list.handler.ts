@@ -54,7 +54,7 @@ export class GetIncidentListHandler
       return date;
     }
 
-    date.setHours(23, 59, 59, 9999);
+    date.setHours(23, 59, 59, 999);
     return date;
   }
 }
